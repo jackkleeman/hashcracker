@@ -13,9 +13,9 @@ def solvehash():
     run=hashcracker.Control()
     solved = run.main(request.args.get("hash"))
     if solved == None:
-        return False
+        return "false"
     else:
-        return True
+        return "true"
 
 @app.route('/getresult')
 @payment.required(10000)
@@ -24,4 +24,4 @@ def retrievehash():
     solved = run.main(request.args.get("hash"))
     return solved
 
-app.run(host="0.0.0.0", debug=True)
+app.run(host="0.0.0.0")
