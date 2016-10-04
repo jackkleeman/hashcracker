@@ -36,12 +36,14 @@ class Control( object ):
         self.user_file = None
     
     
-    def main( self ):
+    def main( self, hash ):
         # Calls the get_hash method
-        self.user_hash = self.get_hash()
+        self.user_hash = hash
         
         while self.decrypted_hash == None: # While no match has been found...
-            self.crack_method = self.get_crack_method()
+            self.crack_method = 'd'#self.get_crack_method()
+            self.hashtype = TYPES_DICT[len(hash)]
+
             
             if self.crack_method == 'd':
                 self.wordlist = self.gen_wordlist() # get the wordlist...
@@ -53,9 +55,10 @@ class Control( object ):
             if self.decrypted_hash != None: # if hash_check returns a match carry out the 2 lines below and end the program
                 self.elapsed = (time.time() - self.start) # This is the time taken to find a match.
                 print('Hash cracked in '+str(self.elapsed)+' seconds. The correct word is: '+self.decrypted_hash)
+                return self.decrypted_hash
                 sys.exit()
             else:
-                self.retry('no matches found')
+                return None
 
             
     def get_hash(self):
@@ -84,9 +87,9 @@ class Control( object ):
     def gen_wordlist(self):
         # Prompts for a wordlist. If wordlist is not in the same directory as the program,
         # please enter the full path to the wordlist file.
-        
         while self.user_file == None:
-            self.filename = input('Please enter the name of the wordlist: ')
+            self.filename = "wordlist.txt"
+
             
             # If file exists, the self.user_file variable is set to the wordlist and the loop ends.
             try:
