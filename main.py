@@ -22,6 +22,8 @@ def solvehash():
 def retrievehash():
     run=hashcracker.Control()
     solved = run.main(request.args.get("hash"))
-    return solved
+    if solved:
+    	return solved
+    return "false"
 
 app.run(host="0.0.0.0")
