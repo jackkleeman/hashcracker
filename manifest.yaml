@@ -1,12 +1,18 @@
-basePath: /
-host: '52.57.152.126:5000'
 info:
-  contact: {email: 'jack@everledger.io', name: 'Jack Kleeman'}
-  description: 'Crack a hash'
   title: 'Hashsolver'
-  x-21-app-image: ''
-  x-21-category: 'utilities'
-  x-21-quick-buy:  '"21 buy https://mkt.21.co/jackkleeman/hashsolver-red-violet/solve?hash='912ec803b2ce49e4a541068d495ab570" to check if a hash is solveable (1000), or use the /getresult endpoint instead to return the solved hash (10000)'
+  description: 'Crack a hash'
+  x-21-quick-buy: '''21 buy https://mkt.21.co/jackkleeman/hashsolver-red-violet/solve?hash=''912ec803b2ce49e4a541068d495ab570'''' to check if a hash is solveable (1000), or use the /getresult endpoint instead to return the solved hash (10000)'
   x-21-total-price: {max: 10000, min: 1000}
-schemes: [http]
+  x-21-category: utilities
+  x-21-app-image:
+  x-21-total-price:
+    min: 1000
+    max: 10000
+  contact:
+    name: 'Jack Kleeman'
+    email: jack@everledger.io
+host: '52.57.152.126:5000'
+schemes:
+  - http
+basePath: /
 x-21-manifest-path: /manifest

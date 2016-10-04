@@ -26,4 +26,4 @@ def retrievehash():
     	return solved
     return "false"
 
-app.run(host="0.0.0.0")
+app.run(host="::")
