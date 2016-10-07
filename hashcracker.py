@@ -36,7 +36,9 @@ class Control( object ):
         self.user_file = None
     
     
-    def main( self, hash ):
+    def main( self, hash, salt ):
+        saltstring = "" if salt is None else salt
+
         # Calls the get_hash method
         self.user_hash = hash
         
@@ -47,7 +49,7 @@ class Control( object ):
             
             if self.crack_method == 'd':
                 self.wordlist = self.gen_wordlist() # get the wordlist...
-                self.decrypted_hash = self.dict_attack()
+                self.decrypted_hash = self.dict_attack(saltstring)
             elif self.crack_method == 'b':
                 self.decrypted_hash = self.brute_force()
                 
@@ -116,7 +118,7 @@ class Control( object ):
                 self.retry('invalid option')
             
     
-    def dict_attack(self):
+    def dict_attack(self, salt):
         # This method loops through the wordlist, converting each word to the hash type
         # and comparing the value to the hash entered by the user.
         # If/When the loop finds a match, the word is returned and the loop ends.
@@ -124,7 +126,7 @@ class Control( object ):
         self.start = time.time()
         print('Checking...\n\n')
         for word in self.wordlist:
-            test = self.hashtype(word)
+            test = self.hashtype(word+salt)
             if test == self.user_hash:
                 return word
                 
